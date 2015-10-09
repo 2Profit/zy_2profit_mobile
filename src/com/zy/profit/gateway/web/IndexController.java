@@ -66,6 +66,7 @@ public class IndexController {
 	
 	@RequestMapping("/register")
 	public String register(HttpServletRequest request, Model model){
+		model.addAttribute("msg", request.getParameter("msg"));
 		return "/register";
 	}
 	
@@ -177,6 +178,51 @@ public class IndexController {
 	}
 	
 	@RequestMapping("/register/save")
+	public String registerSave(Member member, RedirectAttributes redirectAttributes, HttpServletRequest request){
+		
+		String msg = "";
+		
+		member.setMobile(StringUtils.trim(member.getMobile()));
+		
+		//判断短信验证码
+		List<MemberCode> memberCodes = memberCodeService.findCodesByMobile(member.getMobile());
+		MemberCode memberCode = null;
+		if(memberCodes == null || memberCodes.isEmpty()){
+			msg = "短信验证码错误";
+		}else{
+			
+			memberCode = memberCodes.get(0);
+			Date currentDate = new Date();
+			
+			String code = request.getParameter("code").trim();
+			if(!code.equals(memberCode.getCode())){
+				msg = "短信验证码错误";
+			}else{
+				if(DateUtils.addMinutes(memberCode.getCreateDate(), SystemConfig.getSMSVaildTimeInt()).before(currentDate)){
+					msg = "短信验证码已过期，请重新注册";
+				}
+			}
+			
+		}
+		
+		int ret = memberService.vaildUserByMobile(member.getMobile());
+		if(ret > 0){
+			msg = "注册失败，请重新再试";
+		}
+		
+		if(StringUtils.isNotBlank(msg)){
+			redirectAttributes.addAttribute("msg", msg);
+			return "redirect:/register";
+		}
+		
+		member.setPwd(Md5Util.generatePassword(member.getPwd().trim()));
+		memberService.saveMember(member, memberCode);
+		redirectAttributes.addAttribute("msg", "注册成功，马上登陆");
+		
+		return "redirect:/login";
+	}
+	
+	/*@RequestMapping("/register/save")
 	@ResponseBody
 	public AjaxResult registerSave(Member member, RedirectAttributes redirectAttributes, HttpServletRequest request){
 		
@@ -237,7 +283,7 @@ public class IndexController {
 		
 		
 		return ajaxResult;
-	}
+	}*/
 	
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request, Model model){
