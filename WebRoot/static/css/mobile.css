@@ -33,6 +33,7 @@ body { background-color: #f0f0f0; }
     .J_header .h_center { height: 1rem; line-height: 1rem; text-align: center; font-size: 0.36rem; color: #f60; }
     .J_header .h_right { }
 
+.J_error { margin-top:0.2rem; text-align:center;color:#f00; }
 
 .J_nav { position: relative; border-bottom: 0.02rem solid #ddd; background-color: #ffffff; }
     .J_nav .n_item { float: left; width: 25%; }
