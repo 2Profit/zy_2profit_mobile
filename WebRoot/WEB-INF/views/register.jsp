@@ -23,34 +23,22 @@
 		var pwd = $('input[name="pwd"]').val();
 		
 		if(!checkMobile(mobile)){
-			alert('手机号码格式不正确');
+			layerAlert('手机号码格式不正确');
 			$('input[name="mobile"]').focus();
 			return;
 		}
 		if(!code){
-			alert('请输入验证码');
+			layerAlert('请输入验证码');
 			$('input[name="code"]').focus();
 			return;
 		}
 		if(!checkPwd(pwd)){
-			alert('密码由8-16位数字、字母组成');
+			layerAlert('密码由8-16位数字、字母组成');
 			$('input[name="pwd"]').focus();
 			return;
 		}
 		
-		$('#registerForm').ajaxSubmit({
-			url : '${ctx}/register/save',
-			type : 'post',
-			async : false,
-			success : function(result){
-				if(result.success){
-					alert('注册成功');
-					window.location.href = '${ctx}/login';
-				}else{
-					alert(result.msg);
-				}
-			}
-		});
+		$('#registerForm').submit();
 	}
 
 	var codeTimer = null;
@@ -64,6 +52,7 @@
 
 		var mobile = $('input[name="mobile"]').val();
 		if(checkMobile(mobile)){
+			
 			$.ajax({
 				url : '${ctx}/register/vaild_mobile',
 				data : {
@@ -76,6 +65,7 @@
 						$sendBtn.removeClass('blue').addClass('gray').html(
 								"重新获取 ( 60 ) ");
 						$sendBtn.attr('data-status', 'no');
+						
 						//调用短信接口
 						$.ajax({
 							url : '${ctx}/register/send_msg',
@@ -84,7 +74,7 @@
 							},
 							async : false,
 							success : function(result) {
-
+								
 							}
 						});
 
@@ -99,7 +89,7 @@
 							}
 						}, 1000);
 					}else{
-						alert('手机号码已经注册');
+						layerAlert('手机号码已经注册');
 					}
 				}
 			});
@@ -118,7 +108,7 @@
 		<div class="h_center">立即注册</div>
 
 	</div>
-	<form action="" id="registerForm" method="post">
+	<form action="${ctx}/register/save" id="registerForm" method="post">
 		<div class="J_form">
 			<div class="f_item">
 				<div class="i_left">
@@ -154,6 +144,8 @@
 	
 		</div>
 	</form>
+	
+	<div class="J_error">${msg }</div>
 	
 	<div class="J_btnGroup">
 		<a class="orange" href="javascript:void(0);" onclick="mySubmit()">立即注册</a>

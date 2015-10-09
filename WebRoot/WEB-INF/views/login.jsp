@@ -24,7 +24,11 @@ function mySubmit(){
 
 <body>
     
-    登录页
+   <div>
+   		 <b>登录页</b>
+   		 <span>${msg }</span>
+   </div>
+
 
 </body>
 </html>

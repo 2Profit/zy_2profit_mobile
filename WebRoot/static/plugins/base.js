@@ -127,13 +127,14 @@ function checkPwd(pwd){
 }
 
 function layerAlert(content, callback){
-	if(!callback || typeOf(callback) != 'function'){
-		callback = function(){};
-	}
-	layer.open({
+	var idx = layer.open({
 	    btn: ['确定'],
 	    content: content,
-	    yes : callback,
-	    cancel : callback
+	    yes: function(){
+	    	if(callback && typeof(callback) == 'function'){
+	    		callback();
+	    	}
+	        layer.close(idx);
+	    }
 	})
 }
