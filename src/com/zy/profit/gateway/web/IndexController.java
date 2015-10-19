@@ -21,7 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.zy.broker.dto.BrokerExtInfoDto;
+import com.zy.broker.entity.BrokerExtInfo;
 import com.zy.broker.service.BrokerExtInfoService;
+import com.zy.common.entity.PageModel;
 import com.zy.common.util.AjaxResult;
 import com.zy.common.util.BaseUtils;
 import com.zy.common.util.DateUtils;
@@ -30,8 +33,8 @@ import com.zy.member.entity.MemberCode;
 import com.zy.member.service.MemberCodeService;
 import com.zy.member.service.MemberService;
 import com.zy.profit.gateway.util.HttpUtils;
-import com.zy.profit.gateway.util.SystemConfig;
 import com.zy.profit.gateway.util.SMSAPI;
+import com.zy.profit.gateway.util.SystemConfig;
 import com.zy.util.Md5Util;
 import com.zy.vote.service.VoteTopicService;
 
@@ -57,9 +60,8 @@ public class IndexController {
 	@RequestMapping("/index")
 	public String index(Model model){
 		
-		model.addAttribute("currentTopic", voteTopicService.getCurrentTopic());
-		model.addAttribute("topics", voteTopicService.getIndexTopic());
-		model.addAttribute("brokers", brokerExtInfoService.findIndexPageBrokers());
+		model.addAttribute("brokers", 
+				brokerExtInfoService.queryPage(new BrokerExtInfoDto(), new PageModel<BrokerExtInfo>(6)));
 		
 		return "/index";
 	}

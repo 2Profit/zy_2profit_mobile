@@ -20,7 +20,7 @@ public class BrokerController {
 	@RequestMapping("/list")
 	public String brokerIndex(Model model,BrokerExtInfoDto queryDto,PageModel<BrokerExtInfo> pageModel){
 		
-		model.addAttribute("page", brokerExtInfoService.queryForPage(queryDto, pageModel));
+		model.addAttribute("page", brokerExtInfoService.queryPage(queryDto, pageModel));
 		model.addAttribute("queryDto", queryDto);
 		
 		return "broker/brokerIndex";

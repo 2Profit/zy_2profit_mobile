@@ -69,8 +69,9 @@ body { background-color: #f0f0f0; }
 
 
 .J_jjsInfo { padding: 0.2rem; background-color: #fff; }
-    .J_jjsInfo .j_logo { }
-        .J_jjsInfo .j_logo img { vertical-align: top; }
+    .J_jjsInfo .j_logo { height:0.66rem; }
+        .J_jjsInfo .j_logo img { float:left; vertical-align: top; }
+        .J_jjsInfo .j_logo a { float:right; padding:0 0.4rem; height:0.66rem; border-radius:0.06rem; line-height:0.66rem; background-color:#f60; color:#fff; }
     .J_jjsInfo .j_list { margin-top: 0.2rem; padding-bottom: 0.2rem; background-color: #f6f6f6; }
         .J_jjsInfo .j_list .l_title { height: 0.8rem; line-height: 0.8rem; background: url(../images/dot_ddd.png) repeat-x left center; text-align: center; }
             .J_jjsInfo .j_list .l_title span { display: inline-block; padding: 0 0.2rem; background-color: #f6f6f6; color: #666; }
