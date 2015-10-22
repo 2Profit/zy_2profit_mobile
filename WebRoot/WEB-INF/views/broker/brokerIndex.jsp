@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<%@ include file="common/common.jsp"%>
+<%@ include file="../common/common.jsp"%>
 <script type="text/javascript">
 	
 </script>
@@ -13,7 +13,7 @@
 
 <script type="text/javascript">
 	$(function() {
-
+		jc.rem.on();
 	});
 
 	function productTypeQuery(productType){
@@ -21,7 +21,7 @@
 	}
 	
 	function commissionQuery(orderByParam){
-		window.location.href="${ctx }/bk/list?orderByParam="+orderByParam;
+		window.location.href="${ctx }/bk/list?orderP="+orderByParam;
 	}
 	
 	function supprotQuery(supportParam){
@@ -29,7 +29,7 @@
 	}
 	
 	function exchangeTypeQuery(exchangeType){
-		window.location.href="${ctx }/bk/list?exchangeType="+exchangeType;
+		window.location.href="${ctx }/bk/list?exTypeP="+exchangeType;
 	}
 	
 </script>
@@ -65,11 +65,12 @@
 	            </div>
 	            <div class="i_menu">
 	                <div class="m_title">综合推荐</div>
-	                <div class="m_txt"><a href="javascript:;" onclick="">高返佣推荐</a></div>
-	                <div class="m_txt"><a href="javascript:;" onclick="commissionQuery('commissionEurope')">按欧美返佣</a></div>
-	                <div class="m_txt"><a href="javascript:;" onclick="commissionQuery('commissionGold')">黄金返佣</a></div>
-	                <div class="m_txt"><a href="javascript:;" onclick="commissionQuery('commissionSilver')">白银返佣</a></div>
-	                <div class="m_txt"><a href="javascript:;" onclick="commissionQuery('commissionOil')">原油返佣</a></div>
+	                <div class="m_txt"><a href="javascript:;" onclick="commissionQuery('commission_llg')">黄金返佣</a></div>
+	                <div class="m_txt"><a href="javascript:;" onclick="commissionQuery('commission_lls')">白银返佣</a></div>
+	                <div class="m_txt"><a href="javascript:;" onclick="commissionQuery('commission_hkg')">港金返佣</a></div>
+	                <div class="m_txt"><a href="javascript:;" onclick="commissionQuery('commission_lkg')">人民币公斤返佣</a></div>
+	                <div class="m_txt"><a href="javascript:;" onclick="commissionQuery('commission_wh')">外汇返佣</a></div>
+	                <div class="m_txt"><a href="javascript:;" onclick="commissionQuery('commission_yy')">原油返佣</a></div>
 	            </div>
 	        </div>
 	
@@ -80,10 +81,9 @@
 	                <div class="d_token2"></div>
 	            </div>
 	            <div class="i_menu">
-	                <div class="m_title"><a href="javascript:;" onclick="supprotQuery('isEaSupport')">出金免手续费</a>支持EA</div>
-	                <div class="m_txt"><a href="javascript:;">银联入金</a></div>
-	                <div class="m_txt"><a href="javascript:;" onclick="supprotQuery('isCloseFee')">出金免手续费</a></div>
-	                <div class="m_txt"><a href="javascript:;" onclick="supprotQuery('isOpenFee')">入金免手续费</a></div>
+	                <div class="m_title"><a href="javascript:;" onclick="supprotQuery('isEaSupport')">支持EA</a></div>
+	                <div class="m_txt"><a href="javascript:;" onclick="supprotQuery('isUnionpay')">银联入金</a></div>
+	                <div class="m_txt"><a href="javascript:;" onclick="supprotQuery('isInOutFree')">出入金免手续费</a></div>
 	            </div>
 	        </div>
 	
@@ -120,15 +120,15 @@
 		                <div class="r_txt">黃金点差:<span class="cOrange">${broker.pointDiffMinLlg }</span>
 		                				       白银点差:<span class="cOrange">${broker.pointDiffMinLls }</span></div>
 		
-		                <div class="r_txt mt10">黄金返佣:<span class="cOrange">${broker.commissionGold }</span>美元
+		                <div class="r_txt mt10">黄金返佣:<span class="cOrange">${broker.commissionLlg }</span>美元
 		                						 杠杆比例: <span class="cOrange">${broker.leverRate }</span> </div>
 		                <div class="r_txt">伦敦金最低开仓保证金: <span class="cOrange">${broker.openMoneyLlg }</span>美元</div>
 		
 		                <div class="r_txt mt10">
-                           	<c:if test="${broker.exchangeType == '0' }">金银业贸易场会员</c:if>
-                           	<c:if test="${broker.exchangeType == '1' }">证监会会员</c:if>
-                           	<c:if test="${broker.exchangeType == '2' }">英国FCA会员</c:if>
-                           	<c:if test="${broker.exchangeType == '3' }">日本FSA会员</c:if>
+                           	<c:if test="${broker.exchangeNo1!='' && broker.exchangeNo1!=null}">金银业贸易场会员</c:if>
+                           	<c:if test="${broker.exchangeNo2!='' && broker.exchangeNo2!=null}">证监会会员</c:if>
+                           	<c:if test="${broker.exchangeNo3!='' && broker.exchangeNo3!=null}">英国FCA会员</c:if>
+                           	<c:if test="${broker.exchangeNo4!='' && broker.exchangeNo4!=null}">日本FSA会员</c:if>
 		                </div>
 		            </div>
 		        </div>

@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<%@ include file="common/common.jsp"%>
+<%@ include file="../common/common.jsp"%>
 <script type="text/javascript">
 	
 </script>
@@ -13,38 +13,23 @@
 
 <script type="text/javascript">
 	$(function() {
-
+		jc.rem.on();
 	});
 
-	function productTypeQuery(productType){
-		window.location.href="${ctx }/bk/list?productType="+productType;
-	}
-	
-	function commissionQuery(orderByParam){
-		window.location.href="${ctx }/bk/list?orderByParam="+orderByParam;
-	}
-	
-	function supprotQuery(supportParam){
-		window.location.href="${ctx }/bk/list?"+supportParam+"="+1;
-	}
-	
-	function exchangeTypeQuery(exchangeType){
-		window.location.href="${ctx }/bk/list?exchangeType="+exchangeType;
-	}
-	
 </script>
 
 <body>
     <div data-ui="header" class="J_header">
-        <div class="h_left"><a href="#"></a></div>
+        <div class="h_left"><a href="${ctx }/bk/list"></a></div>
         <div class="h_center">经纪商详情</div>
     </div>
 
     <div class="J_jjsInfo">
         <div class="j_logo">
             <img style="width:2rem;" src="${ctx }/${broker.imageUrl}" />
+            <a href="#">开户返佣</a>
         </div>
-        <div class="j_list">
+        <%-- <div class="j_list">
             <div class="l_title">
                 <span>返佣金额</span>
             </div>
@@ -66,10 +51,7 @@
                     <div class="i_num">${broker.commissionOil}$</div>
                 </div>
             </div>
-        </div>
-        <div class="j_btn">
-            <a href="#">开户返佣</a>
-        </div>
+        </div> --%>
     </div>
 
 
@@ -88,11 +70,21 @@
                 </tr>
                 <tr>
                     <td class="t_title">会员/监管编号</td>
-                    <td>香港证监会(AIM232) , 英國FCA(XXXX),香港证监会(AIM232) , 英國FCA(XXXX),香港证监会(AIM232) , 英國FCA(XXXX)</td>
+                    <td>
+                       	<c:if test="${broker.exchangeNo1!=null && broker.exchangeNo1!='' }">金银业贸易场(${broker.exchangeNo1}), </c:if>
+                       	<c:if test="${broker.exchangeNo2!=null && broker.exchangeNo2!='' }">证监会(${broker.exchangeNo2}), </c:if>
+                        <c:if test="${broker.exchangeNo3!=null && broker.exchangeNo3!='' }">英国FCA(${broker.exchangeNo3}), </c:if>
+                        <c:if test="${broker.exchangeNo4!=null && broker.exchangeNo4!='' }">日本FSA(${broker.exchangeNo4}), </c:if>
+                    </td>
                 </tr>
                 <tr>
                     <td class="t_title">会员/监管机构</td>
-                    <td>黃金、白銀、外匯</td>
+                    <td>
+                       	<c:if test="${broker.exchangeNo1!=null && broker.exchangeNo1!='' }">金银业贸易场, </c:if>
+                       	<c:if test="${broker.exchangeNo2!=null && broker.exchangeNo2!='' }">证监会, </c:if>
+                        <c:if test="${broker.exchangeNo3!=null && broker.exchangeNo3!='' }">英国FCA, </c:if>
+                        <c:if test="${broker.exchangeNo4!=null && broker.exchangeNo4!='' }">日本FSA, </c:if>                    
+                    </td>
                 </tr>
             </tbody>
 
@@ -107,30 +99,32 @@
             <tbody>
                 <tr>
                     <td style="width: 2rem;" class="t_title">人民币入金</td>
-                    <td>支持</td>
-                </tr>
-                <tr>
-                    <td class="t_title">银联入金</td>
-                    <td>支持</td>
-                </tr>
-                <tr>
-                    <td class="t_title">入金免手续费</td>
                     <td>
-                    	<c:choose>
-                    		<c:when test="${broker.isOpenFee == '1'}">是</c:when>
-                    		<c:when test="${broker.isOpenFee == '0'}">否</c:when>
-                    		<c:otherwise>&nbsp;</c:otherwise>
-                    	</c:choose>                    
+                       	<c:choose>
+                       		<c:when test="${broker.isRmbSupport == '0'}">不支持</c:when>
+                       		<c:when test="${broker.isRmbSupport == '1'}">支持</c:when>
+                       		<c:otherwise>&nbsp;</c:otherwise>
+                       	</c:choose>                    
                     </td>
                 </tr>
                 <tr>
-                    <td class="t_title">出金免手续费</td>
+                    <td class="t_title">银联入金</td>
+                    <td>
+                   		<c:choose>
+                    		<c:when test="${broker.isUnionpay == '0'}">不支持</c:when>
+                    		<c:when test="${broker.isUnionpay == '1'}">支持</c:when>
+                    		<c:otherwise>&nbsp;</c:otherwise>
+                    	</c:choose>                     
+                    </td>
+                </tr>
+                <tr>
+                    <td class="t_title">出入金免手续费</td>
                     <td>
                     	<c:choose>
-                    		<c:when test="${broker.isCloseFee == '0'}">否</c:when>
-                    		<c:when test="${broker.isCloseFee == '1'}">是</c:when>
+                    		<c:when test="${broker.isInOutFree == '1'}">是</c:when>
+                    		<c:when test="${broker.isInOutFree == '0'}">否</c:when>
                     		<c:otherwise>&nbsp;</c:otherwise>
-                    	</c:choose>
+                    	</c:choose>                    
                     </td>
                 </tr>
                 <tr>
@@ -147,19 +141,39 @@
                 </tr>
                 <tr>
                     <td class="t_title">伦敦金开户最低存款</td>
-                    <td colspan="3">${broker.openMoneyLlg}(顯示幣種)</td>
+                    <td colspan="3">
+                    	<c:choose>
+                    		<c:when test="${broker.openMoneyLlg!=null}">${broker.openMoneyLlg}</c:when>
+                    		<c:otherwise>&nbsp;</c:otherwise>
+                    	</c:choose>
+                    </td>
                 </tr>
                 <tr>
                     <td class="t_title">伦敦银开户最低存款</td>
-                    <td colspan="3">${broker.openMoneyLls}(顯示幣種)</td>
+                    <td colspan="3">
+                    	<c:choose>
+                    		<c:when test="${broker.openMoneyLls!=null}">${broker.openMoneyLls}</c:when>
+                    		<c:otherwise>&nbsp;</c:otherwise>
+                    	</c:choose>                    
+                    </td>
                 </tr>
                 <tr>
                     <td class="t_title">港金开户最低存款</td>
-                    <td colspan="3">${broker.openMoneyHkg}(顯示幣種)</td>
+                    <td colspan="3">
+                    	<c:choose>
+                    		<c:when test="${broker.openMoneyHkg!=null}">${broker.openMoneyHkg}</c:when>
+                    		<c:otherwise>&nbsp;</c:otherwise>
+                    	</c:choose>                    
+                    </td>
                 </tr>
                 <tr>
                     <td class="t_title">人民币公斤条开户最低存款</td>
-                    <td colspan="3">${broker.openMoneyLkg}(顯示幣種)</td>
+                    <td colspan="3">
+                    	<c:choose>
+                    		<c:when test="${broker.openMoneyLkg!=null}">${broker.openMoneyLkg}</c:when>
+                    		<c:otherwise>&nbsp;</c:otherwise>
+                    	</c:choose>                    
+                    </td>
                 </tr>
             </tbody>
 
