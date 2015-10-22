@@ -22,6 +22,7 @@
 <script src="${ctx }/static/js/zepto.min.js" type="text/javascript"></script>
 <script src="${ctx }/static/js/common.js" type="text/javascript"></script>
 <script src="${ctx }/static/js/uiExtend.js" type="text/javascript"></script>
+<script src="${ctx }/static/plugins/jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script src="${ctx }/static/plugins/jquery/jquery.form.js" type="text/javascript"></script>
 <script src="${ctx }/static/plugins/layer/layer.m.js" type="text/javascript"></script>
 <script src="${ctx }/static/plugins/base.js"></script>

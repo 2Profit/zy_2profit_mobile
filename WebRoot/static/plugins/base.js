@@ -138,3 +138,11 @@ function layerAlert(content, callback){
 	    }
 	})
 }
+
+function layerLoading(){
+	return layer.open({
+	    type: 2
+	});
+}
+
+
