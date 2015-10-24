@@ -61,7 +61,7 @@
   </filter-mapping>
   <servlet>
     <servlet-name>ImageServlet</servlet-name>
-    <servlet-class>com.staney.util.ImageServlet</servlet-class>
+    <servlet-class>com.zy.util.ImageServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ImageServlet</servlet-name>
