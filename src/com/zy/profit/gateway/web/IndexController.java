@@ -217,7 +217,11 @@ public class IndexController {
 			return "redirect:/register";
 		}
 		
+		member.setAccountCategory(Member.ACCOUNT_CATEGORY_CUSTOMER);
+		member.setAccountType(Member.ACCOUNT_TYPE_TRUE);
 		member.setPwd(Md5Util.generatePassword(member.getPwd().trim()));
+		
+		
 		memberService.saveMember(member, memberCode);
 		redirectAttributes.addAttribute("msg", "注册成功，马上登陆");
 		
