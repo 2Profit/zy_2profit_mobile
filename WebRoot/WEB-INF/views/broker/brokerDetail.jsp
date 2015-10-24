@@ -26,7 +26,7 @@
 
     <div class="J_jjsInfo">
         <div class="j_logo">
-            <img style="width:2rem;" src="${ctx }/${broker.imageUrl}" />
+            <img style="width:2rem;" src="${ctx }/${broker.imageUrlH5}" />
             <a href="#">开户返佣</a>
         </div>
         <%-- <div class="j_list">
