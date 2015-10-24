@@ -243,7 +243,7 @@ public class VoteController {
 			int numb = voteReplayReportService.findMemberReport(dto.getId(), member.getId());
 			if(numb>0){
 				result.setSuccess(false);
-				result.setCode(VoteTopicDto.RESULT_CODE_PRAISE_ERROR);//该回复用户已经举报
+				result.setCode(VoteTopicDto.RESULT_CODE_REPORT_ERROR);//该回复用户已经举报
 				return result;
 			}
 			
@@ -347,7 +347,7 @@ public class VoteController {
 		try {
 			VoteTopic topic = voteTopicService.get(dto.getVoteTopic().getId());
 			
-			//投票未开启投票功能
+			//投票未开启评论功能
 			if(!topic.getIsComment()){
 				result.setSuccess(false);
 				result.setCode(VoteTopicDto.RESULT_CODE_VOTE_PERMIT_ERROR);

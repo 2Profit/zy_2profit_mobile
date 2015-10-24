@@ -171,7 +171,7 @@ function showDialog(postId) {
 	
     jc.dialog.get("${ctx}/vote/replayDialog", function (obj) {
         obj.show();
-    }, "token_21");
+    }, "reply_win");
 }
 
 function postReplay(){

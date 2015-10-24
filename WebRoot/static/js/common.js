@@ -612,7 +612,7 @@
 
             jc.dialog.dialogList[this.token] = rootObj;
             document.body.appendChild(rootObj);
-            this.oDialog.style.cssText = 'position:fixed;_position:absolute;left:50%;top:50%;margin-left:-' + (this.oDialog.offsetWidth / 2) + 'px;margin-top:-' + (this.oDialog.offsetHeight / 2) + 'px;display:none;z-index:10000;';
+            this.oDialog.style.cssText = 'position:fixed;_position:absolute;left:50%;top:50%;margin-left:-' + (jc.isMobile ? jc.rem.pxToRem(this.oDialog.offsetWidth / 2) : this.oDialog.offsetWidth / 2 + "px") + ';margin-top:-' + (jc.isMobile ? jc.rem.pxToRem(this.oDialog.offsetHeight / 2) : this.oDialog.offsetHeight / 2 + "px") + ';display:none;z-index:10000;';
             /* 按钮点击注册 */
             this.btns = {}
             var aElement = this.oDialog.getElementsByTagName("*");
