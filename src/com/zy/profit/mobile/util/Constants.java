@@ -1,4 +1,4 @@
-package com.zy.profit.gateway.util;
+package com.zy.profit.mobile.util;
 
 public class Constants {
 

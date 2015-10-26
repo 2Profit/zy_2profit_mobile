@@ -1,4 +1,4 @@
-package com.zy.profit.gateway.web;
+package com.zy.profit.mobile.web;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -32,9 +32,9 @@ import com.zy.member.entity.Member;
 import com.zy.member.entity.MemberCode;
 import com.zy.member.service.MemberCodeService;
 import com.zy.member.service.MemberService;
-import com.zy.profit.gateway.util.HttpUtils;
-import com.zy.profit.gateway.util.SMSAPI;
-import com.zy.profit.gateway.util.SystemConfig;
+import com.zy.profit.mobile.util.HttpUtils;
+import com.zy.profit.mobile.util.SMSAPI;
+import com.zy.profit.mobile.util.SystemConfig;
 import com.zy.util.Md5Util;
 import com.zy.vote.service.VoteTopicService;
 

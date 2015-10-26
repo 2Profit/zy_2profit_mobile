@@ -1,4 +1,4 @@
-package com.zy.profit.gateway.web.vote;
+package com.zy.profit.mobile.web.vote;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.zy.common.entity.PageModel;
 import com.zy.common.entity.ResultDto;
 import com.zy.member.entity.Member;
-import com.zy.profit.gateway.util.HttpUtils;
+import com.zy.profit.mobile.util.HttpUtils;
 import com.zy.util.AddressUtils;
 import com.zy.util.RandomValidateCode;
 import com.zy.vote.dto.VoteTopicDto;

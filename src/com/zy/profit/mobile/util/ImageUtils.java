@@ -1,4 +1,4 @@
-package com.zy.profit.gateway.util;
+package com.zy.profit.mobile.util;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;

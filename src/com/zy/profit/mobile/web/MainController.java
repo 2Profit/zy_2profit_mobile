@@ -1,4 +1,4 @@
-package com.zy.profit.gateway.web;
+package com.zy.profit.mobile.web;
 
 import javax.servlet.http.HttpServletRequest;
 

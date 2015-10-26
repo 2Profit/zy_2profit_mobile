@@ -1,4 +1,4 @@
-package com.zy.profit.gateway.web.broker;
+package com.zy.profit.mobile.web.broker;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

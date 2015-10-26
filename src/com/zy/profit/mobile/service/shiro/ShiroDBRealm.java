@@ -1,4 +1,4 @@
-package com.zy.profit.gateway.service.shiro;
+package com.zy.profit.mobile.service.shiro;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.zy.member.entity.Member;
 import com.zy.member.service.MemberService;
-import com.zy.profit.gateway.util.WebHelper;
+import com.zy.profit.mobile.util.WebHelper;
 
 /** 
  * 自定义Shiro的realm
