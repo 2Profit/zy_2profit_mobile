@@ -26,7 +26,14 @@
                 <div class="d_inner">
                     <div class="i_left">
                         <div class="l_face">
-                            <img style="width: 1.08rem; height: 1.08rem;" src="${ctx}/static/images/face_03.jpg" />
+		                    <c:choose>
+		                   		<c:when test="${empty sessionScope.login_user.headUrl }">
+		                   			<img style="width: 1.08rem; height: 1.08rem;" src="${ctx }/static/images/userface.jpg"/>
+		                   		</c:when>
+		                   		<c:otherwise>
+		                   			<img style="width: 1.08rem; height: 1.08rem;" src="${ctx }${sessionScope.login_user.headUrl }"/>
+		                   		</c:otherwise>
+		                   	</c:choose>                            
                             <div class="f_hg"></div>
                         </div>
                     </div>
