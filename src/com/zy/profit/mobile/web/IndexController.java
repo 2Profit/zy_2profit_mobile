@@ -222,7 +222,7 @@ public class IndexController {
 		member.setPwd(Md5Util.generatePassword(member.getPwd().trim()));
 		
 		
-		memberService.saveMember(member, memberCode);
+		memberService.saveMember(member, memberCode, null);
 		redirectAttributes.addAttribute("msg", "注册成功，马上登陆");
 		
 		return "redirect:/login";
