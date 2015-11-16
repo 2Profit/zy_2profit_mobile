@@ -1,5 +1,6 @@
 package com.zy.profit.mobile.web.broker;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,11 @@ public class BrokerController {
 	
 	@RequestMapping("/list")
 	public String brokerIndex(Model model,BrokerExtInfoDto queryDto,PageModel<BrokerExtInfo> pageModel){
+		
+		String param = queryDto.getOrderP();
+		if(StringUtils.isNotBlank(param)){
+			queryDto.getOrderByParamMap().put(param, "desc");
+		}
 		
 		model.addAttribute("page", brokerExtInfoService.queryPage(queryDto, pageModel));
 		model.addAttribute("queryDto", queryDto);
