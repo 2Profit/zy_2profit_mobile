@@ -178,11 +178,13 @@ public class VoteController {
 			voteMemberLogService.save(voteLog);
 			
 			VoteTopicOption optionEntity = voteTopicOptionService.get(dto.getId());
-			optionEntity.setVoteCount(optionEntity.getVoteCount()+1);
+			int number1 = optionEntity.getVoteCount()==null ? 0 : optionEntity.getVoteCount();
+			optionEntity.setVoteCount(number1+1);
 			voteTopicOptionService.update(optionEntity);
 			
 			VoteTopic topicEntity = voteTopicService.get(dto.getVoteTopic().getId());
-			topicEntity.setVoteCount(topicEntity.getVoteCount()+1);
+			int number2 = topicEntity.getVoteCount()==null ? 0 : topicEntity.getVoteCount();
+			topicEntity.setVoteCount(number2+1);
 			voteTopicService.update(topicEntity);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -217,7 +219,8 @@ public class VoteController {
 			voteReplayPraiseService.save(praise);
 			
 			VoteTopicPostReplay entity = voteTopicPostReplayService.get(dto.getId());
-			entity.setPraiseCount(entity.getPraiseCount()+1);
+			int number = entity.getPraiseCount()==null ? 0 : entity.getPraiseCount();
+			entity.setPraiseCount(number+1);
 			voteTopicPostReplayService.update(entity);
 			
 			result.setMessage(entity.getPraiseCount()+"");
@@ -254,7 +257,8 @@ public class VoteController {
 			voteReplayReportService.save(report);
 			
 			VoteTopicPostReplay entity = voteTopicPostReplayService.get(dto.getId());
-			entity.setReportCount(entity.getPraiseCount()+1);
+			int number = entity.getPraiseCount()==null ? 0 : entity.getPraiseCount();
+			entity.setReportCount(number+1);
 			voteTopicPostReplayService.update(entity);
 			
 			result.setMessage(entity.getReportCount()+"");
@@ -291,7 +295,8 @@ public class VoteController {
 			votePostPraiseService.save(praise);
 			
 			VoteTopicPost postEntity = voteTopicPostService.get(dto.getId());
-			postEntity.setPraiseCount(postEntity.getPraiseCount()+1);
+			int number = postEntity.getPraiseCount()==null ? 0 : postEntity.getPraiseCount();
+			postEntity.setPraiseCount(number+1);
 			voteTopicPostService.update(postEntity);
 			
 			result.setMessage(postEntity.getPraiseCount()+"");
@@ -329,7 +334,8 @@ public class VoteController {
 			votePostReportService.save(report);
 			
 			VoteTopicPost postEntity = voteTopicPostService.get(dto.getId());
-			postEntity.setReportCount(postEntity.getReportCount()+1);
+			int number = postEntity.getReportCount()==null ? 0 : postEntity.getReportCount();
+			postEntity.setReportCount(number+1);
 			voteTopicPostService.update(postEntity);
 			
 			result.setMessage(postEntity.getReportCount()+"");
@@ -357,11 +363,13 @@ public class VoteController {
 			dto.setPublisher(HttpUtils.getMember(request));
 			dto.setPraiseCount(0);
 			dto.setReportCount(0);
-			dto.setFloorNumb(topic.getPostCount()+1);
+			int number1 = topic.getPostCount()==null ? 0 : topic.getPostCount();
+			dto.setFloorNumb(number1+1);
 			dto.setIpAddress(AddressUtils.getIp(request));
 			voteTopicPostService.save(dto);
 			
-			topic.setPostCount(topic.getPostCount()+1);
+			int number2 = topic.getPostCount()==null ? 0 : topic.getPostCount();
+			topic.setPostCount(number2+1);
 			voteTopicService.save(topic);
 			
 		} catch (Exception e) {
